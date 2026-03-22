@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ff5000" />
+    <title>Xiaoju Gardening House · 購買意願調查</title>
+    <meta
+      name="description"
+      content="Xiaoju Gardening House（小居園藝屋）購買意願調查：瀏覽實拍照片並填寫願意支付的價格（RM）。"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="device.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="top-bar">
+      <span class="top-bar-lead">購買意願調查 · 瀏覽照片後填寫您願意為該品項支付的價格（RM）</span>
+      <span>
+        <a href="https://www.facebook.com/xiaojugardeninghouse" target="_blank" rel="noopener noreferrer"
+          >Facebook 官方專頁</a
+        >
+      </span>
+    </div>
+
+    <header class="header-main">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">小居</div>
+          <div>
+            <h1>Xiaoju Gardening House</h1>
+            <p class="sub">小居園藝屋 · 購買意願調查（非下單頁面）</p>
+          </div>
+        </div>
+        <div class="search-wrap">
+          <input
+            id="search-input"
+            type="search"
+            placeholder="搜尋編號、類目或標題…"
+            autocomplete="off"
+            aria-label="搜尋項目"
+          />
+          <button type="button" id="search-btn">搜尋</button>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="summary-btn" id="summary-btn" aria-haspopup="dialog">
+            已記錄意願（<span id="wtp-count">0</span>）
+          </button>
+        </div>
+      </div>
+      <nav class="nav-cats" aria-label="照片分類">
+        <a href="#" data-cat="all" class="active">全部</a>
+        <a href="#" data-cat="succulent">小型多肉植物</a>
+        <a href="#" data-cat="pot">植物花盆</a>
+        <a href="#" data-cat="landscape">小型景觀植物</a>
+        <a href="https://www.facebook.com/xiaojugardeninghouse" target="_blank" rel="noopener noreferrer">關於店家</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" aria-label="說明與篩選">
+        <div class="intro-card">
+          <strong>店家簡介（摘自 Facebook 公開說明）</strong>
+          <p>
+            Xiaoju Gardening House 是一間售賣小型植物的住家小賣鋪。我們建立了<strong>站點式取貨服務</strong>，為大家提供更便利的服務。
+          </p>
+          <p><strong>服務內容：</strong>小型多肉植物、植物花盆、小型景觀植物。</p>
+          <p><strong>地點：</strong>Lives in Sibu, Sarawak（砂拉越詩巫）。</p>
+          <p class="intro-survey">
+            <strong>本頁用途：</strong>這是<strong>購買意願調查</strong>。請依照片想像實際購買時，您<strong>願意支付的金額（RM）</strong>填寫於各項；僅供意願參考，<strong>不構成訂單或報價承諾</strong>。圖片來自資料夾「照片回顾」。
+          </p>
+        </div>
+        <h3>分類篩選</h3>
+        <div id="filter-btns"></div>
+      </aside>
+
+      <main class="main-panel">
+        <p class="main-hint">
+          請逐張瀏覽下方實拍，在「<strong>願意支付</strong>」欄填寫金額後按「<strong>送出意願</strong>」。資料先存在<strong>本機瀏覽器</strong>，可點右上角「已記錄意願」複製清單備份；若要與店家確認，請另透過
+          <a href="https://www.facebook.com/xiaojugardeninghouse" target="_blank" rel="noopener noreferrer">Facebook</a>
+          聯繫。
+        </p>
+        <div class="toolbar">
+          <span class="toolbar-stat">調查項目 · 共 <strong id="product-total">—</strong> 張實拍</span>
+          <div class="sort-row">
+            <button type="button" data-sort="default" class="active">綜合</button>
+            <button type="button" data-sort="id-asc">編號 ↑</button>
+            <button type="button" data-sort="id-desc">編號 ↓</button>
+            <button type="button" data-sort="filled-first">已填優先</button>
+          </div>
+        </div>
+        <div id="product-grid" class="product-grid"></div>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <p>
+        <strong class="footer-brand">Xiaoju Gardening House（小居園藝屋）</strong><br />
+        本頁為購買意願調查用途，非購物車或結帳系統。若需訂購或取貨資訊，請洽
+        <a href="https://www.facebook.com/xiaojugardeninghouse" target="_blank" rel="noopener noreferrer">Facebook 專頁</a>。
+      </p>
+    </footer>
+
+    <dialog id="summary-dialog" class="summary-dialog">
+      <div class="summary-dialog-inner">
+        <h2 class="summary-title">已記錄的購買意願</h2>
+        <div id="summary-body" class="summary-body"></div>
+        <p class="summary-hint">以下資料儲存在本機瀏覽器，清除網站資料會一併刪除。建議使用「複製清單」備份。</p>
+        <div class="dialog-actions">
+          <button type="button" class="btn-secondary" id="copy-summary">複製清單</button>
+          <button type="button" class="btn-danger" id="clear-all-wtp">全部清除</button>
+          <button type="button" class="btn-primary" id="close-summary">關閉</button>
+        </div>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
